@@ -9,7 +9,11 @@ namespace Business.Abstract
 {
     public interface IAlbumService
     {
+        Album GetByAlbumId(int albumId);
         List<Album> GetList();
-        List<Album> GetListBy
+        List<Album> GetListByArtistName(string artistName);
+        void Add(Album album);
+        void Update(Album album);
+        void Delete(Album album);
     }
 }

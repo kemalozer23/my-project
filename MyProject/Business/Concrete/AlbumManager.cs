@@ -11,35 +11,47 @@ namespace Business.Concrete
 {
     public class AlbumManager : IAlbumService
     {
+        // Dependency injection: used for not to be dependent to only one ORM
         protected IAlbumDal _albumDal;
+        public AlbumManager(IAlbumDal albumDal)
+        {
+            _albumDal = albumDal;
+        }
+
+        // Add an album to the database
         public void Add(Album album)
         {
-            throw new NotImplementedException();
+            _albumDal.Add(album);
         }
 
+        // Delete an album from the databse
         public void Delete(Album album)
         {
-            throw new NotImplementedException();
+            _albumDal.Delete(album);
         }
 
+        // Get an album by album id
         public Album GetByAlbumId(int albumId)
         {
-            throw new NotImplementedException();
+            return _albumDal.Get(p => p.AlbumId == albumId);
         }
-
+        
+        // Get a list of albums 
         public List<Album> GetList()
         {
-            throw new NotImplementedException();
+            return _albumDal.GetList().ToList();
         }
 
+        // Get a list of albums by artist name
         public List<Album> GetListByArtistName(string artistName)
         {
-            throw new NotImplementedException();
+            return _albumDal.GetList(p => p.ArtistName == artistName).ToList();
         }
 
+        // Update an album in the database
         public void Update(Album album)
         {
-            throw new NotImplementedException();
+            _albumDal.Update(album);
         }
     }
 }
